@@ -1,11 +1,14 @@
 = Change Log
 
-== 7
+== 8
+
+== 7 (2020-10-22)
 
 - changing versions numbers back to numbers to avoid breaking firebase.
 - Update backend to JVM this changed the URL that the app is pointing at
 - Update KnownTrails to include Monarch Singletrack
 - Fix issue with social media links not opening on Android 11.
+- Increased timeout to aggregator service.
 
 == 六 (2020-08-26)
 

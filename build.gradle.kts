@@ -8,7 +8,7 @@ plugins {
 
 allprojects {
     group = "cash.andrew.mntrailconditions"
-    version = "7.0"
+    version = "8.0"
 
     repositories {
         mavenCentral()
