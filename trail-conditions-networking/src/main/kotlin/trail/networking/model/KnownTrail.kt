@@ -75,6 +75,13 @@ enum class KnownTrail(
     website = "http://www.morcmtb.org/lebanon-hills"
   ),
 
+  LoneLakePark(
+    trailName = "Lone Lake Park",
+    facebookUrl = "https://www.facebook.com/MinnetonkaMTB/",
+    mtbProjectUrl = "https://www.mtbproject.com/directory/8024673/lone-lake-park",
+    website = "https://www.minnetonkamn.gov/Home/Components/FacilityDirectory/FacilityDirectory/53/3379"
+  ),
+
   MNRiverBottoms(
     trailName = "Minnesota River Trail",
     facebookUrl = null,
@@ -191,6 +198,7 @@ enum class KnownTrail(
       HillsidePark,
       LakeRebecca,
       LebanonHills,
+      LoneLakePark,
       MNRiverBottoms,
       Monarch,
       MurphyHanrehan,
