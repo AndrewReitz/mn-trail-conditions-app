@@ -19,21 +19,21 @@ dependencies {
   implementation(kotlin("reflect"))
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}")
 
-  implementation("com.google.firebase:firebase-admin:7.0.1")
+  implementation("com.google.firebase:firebase-admin:7.1.0")
   implementation("org.twitter4j:twitter4j-core:4.0.7")
 
-  kapt("com.google.dagger:dagger-compiler:2.29.1")
-  implementation("com.google.dagger:dagger:2.29.1")
+  kapt("com.google.dagger:dagger-compiler:2.31")
+  implementation("com.google.dagger:dagger:2.31")
 
   // Every function needs this dependency to get the Functions Framework API.
-  compileOnly("com.google.cloud.functions:functions-framework-api:1.0.1")
+  compileOnly("com.google.cloud.functions:functions-framework-api:1.0.3")
 
   // To run function locally using Functions Framework's local invoker
-  "invoker"("com.google.cloud.functions.invoker:java-function-invoker:1.0.0-alpha-2-rc5")
+  "invoker"("com.google.cloud.functions.invoker:java-function-invoker:1.0.1")
 
   testImplementation(kotlin("test-annotations-common", versions.kotlin))
   testImplementation(kotlin("test-junit", versions.kotlin))
-  testImplementation("com.google.cloud.functions:functions-framework-api:1.0.1")
+  testImplementation("com.google.cloud.functions:functions-framework-api:1.0.3")
   testImplementation("io.ktor:ktor-client-mock-jvm:${versions.ktor}")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}")
   testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
