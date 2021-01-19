@@ -6,19 +6,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
 import androidx.annotation.StringRes
+import androidx.core.content.res.ResourcesCompat
+import cash.andrew.kotlin.common.retry
 import cash.andrew.mntrailconditions.R
 import cash.andrew.mntrailconditions.databinding.MarkdownActivityBinding
 import cash.andrew.mntrailconditions.util.ComponentContainer
 import cash.andrew.mntrailconditions.util.makeComponent
+import io.ktor.client.HttpClient
+import io.ktor.client.request.get
 import io.noties.markwon.Markwon
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 private const val TITLE_RES_KEY = "TitleRes"
-private const val MARKDOWN_FILE_KEY = "MarkdownFile"
+private const val MARKDOWN_URL_KEY = "MarkdownFile"
 
 class MarkdownActivity : AppCompatActivity(), ComponentContainer<ActivityComponent> {
 
     @Inject lateinit var markwon: Markwon
+    @Inject lateinit var client: HttpClient
 
     override val component by lazy { makeComponent() }
 
@@ -29,7 +38,7 @@ class MarkdownActivity : AppCompatActivity(), ComponentContainer<ActivityCompone
 
         component.inject(this)
 
-        val markDownFile = requireNotNull(intent.getStringExtra(MARKDOWN_FILE_KEY))
+        val markDownUrl = requireNotNull(intent.getStringExtra(MARKDOWN_URL_KEY))
         val title = getString(intent.getIntExtra(TITLE_RES_KEY, 0))
 
         binding = MarkdownActivityBinding.inflate(layoutInflater)
@@ -37,17 +46,22 @@ class MarkdownActivity : AppCompatActivity(), ComponentContainer<ActivityCompone
 
         val typedValue = TypedValue()
         theme.resolveAttribute(R.attr.colorOnPrimarySurface, typedValue, true)
-        val arrow = resources.getDrawable(R.drawable.ic_arrow_back_white_24dp, theme)
-        arrow.setTint(typedValue.data)
+        val arrow = ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_back_white_24dp, theme)
+        requireNotNull(arrow).setTint(typedValue.data)
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(arrow)
         supportActionBar?.title = title
 
-        resources.assets.open(markDownFile).use { inputStream ->
-            inputStream.reader().use {
-                markwon.setMarkdown(binding.markdownText, it.readText())
+        MainScope().launch {
+            runCatching {
+                val text: String = retry {
+                    client.get(markDownUrl)
+                }
+                markwon.setMarkdown(binding.markdownText, text)
+            }.onFailure {
+                binding.markdownText.text = getString(R.string.markdown_error)
             }
         }
     }
@@ -58,14 +72,14 @@ class MarkdownActivity : AppCompatActivity(), ComponentContainer<ActivityCompone
     }
 }
 
-enum class MarkDownFile(val fileName: String) {
-    ABOUT("about.md"),
-    WHY_ARE_TRAILS_CLOSED("why-are-trails-closed.md")
+enum class MarkDownFile(val url: String) {
+    ABOUT("https://morc-trail-conditions.firebaseapp.com/about.md"),
+    WHY_ARE_TRAILS_CLOSED("https://morc-trail-conditions.firebaseapp.com/why-are-trails-closed.md")
 }
 
 fun Activity.navigateToMarkDownActivity(@StringRes titleRes: Int, markDownFile: MarkDownFile) {
     val intent = Intent(this, MarkdownActivity::class.java)
     intent.putExtra(TITLE_RES_KEY, titleRes)
-    intent.putExtra(MARKDOWN_FILE_KEY, markDownFile.fileName)
+    intent.putExtra(MARKDOWN_URL_KEY, markDownFile.url)
     startActivity(intent)
 }
