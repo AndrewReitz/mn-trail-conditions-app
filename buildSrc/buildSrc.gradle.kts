@@ -13,7 +13,7 @@ kotlinDslPluginOptions {
 
 dependencies {
     implementation(kotlin("gradle-plugin", "1.4.20"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.1")
     implementation("com.android.tools.build:gradle:4.1.1")
     implementation("com.google.gms:google-services:4.3.4")
     implementation("com.google.firebase:firebase-crashlytics-gradle:2.4.1")

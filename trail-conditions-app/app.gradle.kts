@@ -96,7 +96,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}")
 
     implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.2")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.annotation:annotation:1.1.0")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.recyclerview:recyclerview:1.1.0")
@@ -104,23 +104,23 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.1")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.2")
 
     implementation("com.google.android.material:material:1.2.1")
 
-    implementation("com.google.firebase:firebase-core:17.5.1")
-    implementation("com.google.firebase:firebase-messaging:20.3.0")
-    implementation("com.google.firebase:firebase-analytics:17.6.0")
-    implementation("com.google.firebase:firebase-crashlytics:17.2.2")
+    implementation("com.google.firebase:firebase-core:18.0.1")
+    implementation("com.google.firebase:firebase-messaging:21.0.1")
+    implementation("com.google.firebase:firebase-analytics:18.0.1")
+    implementation("com.google.firebase:firebase-crashlytics:17.3.0")
 
-    kapt("com.google.dagger:dagger-compiler:2.29.1")
-    implementation("com.google.dagger:dagger:2.29.1")
+    kapt("com.google.dagger:dagger-compiler:2.31")
+    implementation("com.google.dagger:dagger:2.31")
 
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
-    implementation("com.jakewharton.threetenabp:threetenabp:1.2.4")
+    implementation("com.jakewharton.threetenabp:threetenabp:1.3.0")
     implementation("com.jakewharton:process-phoenix:2.0.0")
     implementation("com.jakewharton.timber:timber:4.7.1")
     implementation("com.jakewharton.byteunits:byteunits:0.9.1")
@@ -129,14 +129,14 @@ dependencies {
     releaseImplementation("com.readystatesoftware.chuck:library-no-op:1.1.0")
 
     implementation("com.github.AndrewReitz.andrew-kotlin-commons:andrew-kotlin-commons:master-SNAPSHOT")
-    implementation("io.noties.markwon:core:4.6.0")
+    implementation("io.noties.markwon:core:4.6.1")
 
     val stethoVersion = "1.5.1"
     debugImplementation("com.facebook.stetho:stetho:$stethoVersion")
     debugImplementation("com.facebook.stetho:stetho-okhttp3:$stethoVersion")
     debugImplementation("com.facebook.stetho:stetho-timber:$stethoVersion")
 
-    testImplementation("org.amshove.kluent:kluent-android:1.61")
+    testImplementation("org.amshove.kluent:kluent-android:1.64")
     testImplementation("junit:junit:4.13.1")
 }
 
