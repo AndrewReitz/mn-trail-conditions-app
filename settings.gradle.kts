@@ -1,7 +1,8 @@
 include(
   ":trail-conditions-app",
   ":trail-conditions-networking",
-  ":trail-conditions-gcp-functions"
+  ":trail-conditions-gcp-functions",
+  ":trail-conditions-hosting"
 )
 
 rootProject.name = "mn-trail-conditions"

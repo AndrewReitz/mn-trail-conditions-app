@@ -2,6 +2,12 @@
 
 == 8
 
+- Updated to Kotlin 1.4.21
+- Updated Library versions
+- Make trail details text copyable
+- Made urls clickable and highlighted in trail details text
+- Update info text to come from the web so it can be updated without a release.
+
 == 7 (2020-10-22)
 
 - changing versions numbers back to numbers to avoid breaking firebase.
