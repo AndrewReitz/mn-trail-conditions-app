@@ -1,14 +1,32 @@
-image: androidsdk/android-30
+image: openjdk:11-jdk
 
 cache:
   paths:
   - .gradle/*
 
+variables:
+  ANDROID_COMPILE_SDK: "30"
+  ANDROID_BUILD_TOOLS: "29.0.3"
+  ANDROID_SDK_TOOLS: "29.0.3"
+
 before_script:
-  - apt install -y zip
-  - curl -s "https://get.sdkman.io" | bash
-  - source "$HOME/.sdkman/bin/sdkman-init.sh"
-  - yes | sdk install java 11.0.2-open
+  - apt --quiet update --yes
+  - apt --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
+
+  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip
+  - unzip -q android-sdk.zip
+
+  - cmdline-tools/tools/bin/sdkmanager --update > update.log
+  - cmdline-tools/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "build-tools;${ANDROID_BUILD_TOOLS}" > installPlatform.log
+
+  - export ANDROID_HOME=$PWD/cmdline-tools
+  - export ANDROID_SDK_ROOT=$ANDROID_HOME
+  - chmod +x ./gradlew
+
+  - echo $PUBLISH_KEY > trail-conditions-app/keys/publish-key.json
+
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+  - export MN_TRAIL_INFO_BUILD_NUMBER=$((CI_JOB_ID - 99347792))
 
 stages:
   - build
@@ -19,7 +37,7 @@ build-job:
   only:
   - branches
   script:
-  - ./gradlew build :trail-conditions-app:lint :trail-conditions-app:bundle -PrunLint=true --no-daemon --console=plain
+  - ./gradlew build :trail-conditions-app:lint :trail-conditions-app:bundle -PrunLint=true --console=plain
   artifacts:
     paths:
     - build/outputs/
@@ -27,7 +45,7 @@ build-job:
 deploy-job:
   stage: deploy
   script:
-  - ./gradlew :trail-conditions-app:publishRelease --no-daemon --console=plain
+  - ./gradlew :trail-conditions-app:publishRelease --console=plain
   only:
   - master
 

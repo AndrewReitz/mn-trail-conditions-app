@@ -37,7 +37,6 @@ dependencies {
   testImplementation("io.ktor:ktor-client-mock-jvm:${versions.ktor}")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}")
   testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
-
 }
 
 kotlinConfigWriter {
