@@ -1,6 +1,6 @@
 = Change Log
 
-== 8
+== 8 (2021-01-21)
 
 - Updated to Kotlin 1.4.21
 - Updated Library versions
