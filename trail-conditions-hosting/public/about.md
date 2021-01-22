@@ -16,24 +16,13 @@ If you find any issues or bugs, have any comments or ideas, want to get involved
 
 The app is open source, and is hosted on [gitlab](https://gitlab.com/andrew.reitz/mn-trail-conditions-app/).
 
-### Support
+### Support The App
 
 This app is free and without ads and will remain that way. If you like my work and want to help support
 this app and my motivation for maintaining it consider purchasing one of my
 [other apps on the play store](https://play.google.com/store/apps/developer?id=Andrew+Reitz),
-sending some cash to [$andrewreitz](https://cash.app/$AndrewReitz) on squarecash,
-[@andrewreitz](https://www.venmo.com/andrewreitz) on venmo, or one of these crypto addresses.
-
-```
-BTC: 38mJrfh1WTHExZYj9FJUuGczudSFfbLEmj
-XMR: 8BcFZwVMSQ78UbQgj5MyMZ5Ty6AoKDJ4QfqweC7B2hqoiwpcq8MmhXd59UWSoxYF3BJc2Yr73GutgJq1VR39SwajCFNepXm
-ETC: 0x1113C9F2D4e773D9ae478b98F009cdC4F286d344
-BAT: 0x275b22E0879FdABfe8b3775B31182a9072D1676A
-USDC: 0xC2a2Ec63F878aF33A0c8F357B7bF670fdc3B2400
-```
-
-**Anything helps me stay motivated and is really appreciated!**
-
+I'm also on the cashapp as [$andrewreitz](https://cash.app/$AndrewReitz), and
+[@andrewreitz](https://www.venmo.com/andrewreitz) on venmo.
 
 ## Volunteers!
 

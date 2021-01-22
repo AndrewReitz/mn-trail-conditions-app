@@ -40,9 +40,16 @@ Trail-Conditions-App it belongs in Trail-Conditions-Networking.
 
 ## Questions, Issues, Ideas?
 
-Join the telegram room https://t.me/morcmtb
+Please submit a ticket https://gitlab.com/andrew.reitz/mn-trail-conditions-app/-/issues
+or email me at andrewreitz@protonmail.com
 
-or submit a ticket https://gitlab.com/andrew.reitz/mn-trail-conditions-app/-/issues
+### Support The App
+
+This app is free and without ads and will remain that way. If you like my work and want to help support
+this app and my motivation for maintaining it consider purchasing one of my
+[other apps on the play store](https://play.google.com/store/apps/developer?id=Andrew+Reitz),
+I'm also on the cashapp as [$andrewreitz](https://cash.app/$AndrewReitz), and
+[@andrewreitz](https://www.venmo.com/andrewreitz) on venmo.
 
 ## License
 
