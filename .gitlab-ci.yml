@@ -1,4 +1,4 @@
-image: openjdk:8-jdk
+image: openjdk:11-jdk
 
 cache:
   paths:
@@ -10,21 +10,22 @@ variables:
   ANDROID_SDK_TOOLS: "29.0.3"
 
 before_script:
-  - apt-get --quiet update --yes
-  - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
+  - apt --quiet update --yes
+  - apt --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
 
-  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
-  - unzip -q android-sdk.zip -d android-sdk-linux
+  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip
+  - unzip -q android-sdk.zip -d cmdline-tools
+  - mv cmdline-tools/cmdline-tools cmdline-tools/latest
 
-  - mkdir android-sdk-linux/licenses
-  - printf "d56f5187479451eabf01fb78af6dfcb131a6481e\n24333f8a63b6825ea9c5514f83c2829b004d1fee" > android-sdk-linux/licenses/android-sdk-license
-  - printf "84831b9409646a918e30573bab4c9c91346d8abd" > android-sdk-linux/licenses/android-sdk-preview-license
+  - mkdir cmdline-tools/licenses
+  - printf "d56f5187479451eabf01fb78af6dfcb131a6481e\n24333f8a63b6825ea9c5514f83c2829b004d1fee" > cmdline-tools/licenses/android-sdk-license
+  - printf "84831b9409646a918e30573bab4c9c91346d8abd" > cmdline-tools/licenses/android-sdk-preview-license
 
-  - android-sdk-linux/tools/bin/sdkmanager --update > update.log
-  - android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "build-tools;${ANDROID_BUILD_TOOLS}" > installPlatform.log
+  - cmdline-tools/latest/bin/sdkmanager --update > update.log
+  - cmdline-tools/latest/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "build-tools;${ANDROID_BUILD_TOOLS}" > installPlatform.log
 
-  - export ANDROID_HOME=$PWD/android-sdk-linux
-  - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
+  - export ANDROID_HOME=$PWD/cmdline-tools
+  - export ANDROID_SDK_ROOT=$ANDROID_HOME
   - chmod +x ./gradlew
 
   - echo $PUBLISH_KEY > trail-conditions-app/keys/publish-key.json
@@ -41,7 +42,7 @@ build-job:
   only:
   - branches
   script:
-  - ./gradlew :trail-conditions-app:build :trail-conditions-app:lint :trail-conditions-app:bundle -PrunLint=true --no-daemon --console=plain
+  - ./gradlew build :trail-conditions-app:lint :trail-conditions-app:bundle -PrunLint=true --console=plain
   artifacts:
     paths:
     - build/outputs/
@@ -49,7 +50,7 @@ build-job:
 deploy-job:
   stage: deploy
   script:
-  - ./gradlew :trail-conditions-app:publishRelease --no-daemon --console=plain
+  - ./gradlew :trail-conditions-app:publishRelease --console=plain
   only:
   - master
 
