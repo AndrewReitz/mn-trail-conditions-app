@@ -17,7 +17,7 @@ before_script:
   - unzip -q android-sdk.zip -d cmdline-tools
   - mv cmdline-tools/cmdline-tools cmdline-tools/latest
 
-  - yes | cmdline-tools/latest/bin/sdkmanager --licenses
+  - yes | cmdline-tools/latest/bin/sdkmanager --licenses > license.log || true
   - cmdline-tools/latest/bin/sdkmanager --update > update.log
   - cmdline-tools/latest/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "build-tools;${ANDROID_BUILD_TOOLS}" > installPlatform.log
 
